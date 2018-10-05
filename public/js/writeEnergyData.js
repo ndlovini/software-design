@@ -8,3 +8,8 @@ function writeUserData() {
   });
   window.alert("working!")
 }
+
+/*
+function populateDatabase() {
+	firebase.database.
+}*/
