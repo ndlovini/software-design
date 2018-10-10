@@ -23,7 +23,7 @@ mongo.connect(url,function(err,db){
         var line_number = 0;
         var final_time = '';
         jsonObj.forEach(function(line){
-            day_obj[count] = line.WITS_The_Junction_HT_kWh;
+            day_obj[count] = Number(line.WITS_The_Junction_HT_kWh);
             count++;
             
             if (count == 48) {

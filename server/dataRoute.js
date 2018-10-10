@@ -2,10 +2,19 @@ let path = require('path');
 let express = require('express');
 let dataRouter = express.Router();
 let mongo = require('mongodb').MongoClient;
+var bodyParser = require("body-parser");
+var data = require('./getLineGraph');
 
-dataRouter.get('/data/get-data', function (req, res) {
-res.sendFile(path.join(__dirname, '../views', 'index.html'));
+dataRouter.use(bodyParser.urlencoded({ extended: true }));
+
+dataRouter.post('/get-data', function (req, res) {
+    console.log('submitted ', req.body.line_graph);
+    res.sendFile(path.join(__dirname, '../views', 'showGraph.html'));
 });
+
+dataRouter.get('/get-line', function(req,res){
+    data.getData(res);
+})
 
 dataRouter.post('data/insert-data', function (req, res) {
 
