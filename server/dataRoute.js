@@ -16,12 +16,20 @@ dataRouter.post('/get-heat', function (req,res){
     res.sendFile(path.join(__dirname, '../views', 'showHeat.html'))
 })
 
+dataRouter.post('/get-pie', function (req,res){
+    res.sendFile(path.join(__dirname, '../views', 'showPie.html'))
+})
+
 dataRouter.get('/get-line', function(req,res){
     data.getData(res);
 })
 
 dataRouter.get('/get-heatmap', function(req,res){
     data.getHeatData(res);
+})
+
+dataRouter.get('/get-piechart', function(req,res){
+    data.getPie(res);
 })
 
 dataRouter.post('data/insert-data', function (req, res) {

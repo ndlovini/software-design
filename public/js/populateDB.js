@@ -8,10 +8,6 @@ mongo.connect(url,function(err,db){
     if (err) throw err;
     var dbo = db.db('energy-viz');
 
-    fs.readFile(file_path,function(err,data){
-
-    })
-
     csv().fromFile(file_path).then((jsonObj)=>{
         //console.log(jsonObj);
 

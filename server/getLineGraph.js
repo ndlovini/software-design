@@ -92,5 +92,31 @@ function getHeatData(res) {
     });
 }
 
+function getPie(res){
+    var result = [];
+    mongo.connect(url,function(err,db){
+        if (err) throw err;
+        dbo = db.db('energy-viz');
+        let pg_query = {"Res":"JCT2018","Academic_description":"PG"};
+        let ug_query = {"Res":"JCT2018","Academic_description":"UG"};
+
+        dbo.collection("Students").find(pg_query).toArray(function(err,array){
+            if (err) throw err;
+            result.push(array.length);
+            dbo.collection("Students").find(ug_query).toArray(function(err,_array){
+                if (err) throw err;
+                result.push(_array.length);
+                res.json(result);
+                console.log(result);
+            })
+        });
+        //var ug_count = dbo.collection("Students").countDocuments(ug_query);
+        //console.log(pg_count);
+        //var result = [pg_count,ug_count];
+        //res.json(result);
+    });
+}//db.Students.find({"res":"JCT2018","Academic_description":"PG"}).count()
+
 module.exports.getData = getData;
 module.exports.getHeatData = getHeatData;
+module.exports.getPie = getPie;
