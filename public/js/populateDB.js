@@ -2,7 +2,7 @@ var mongo = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var fs = require('fs');
 var csv = require('csvtojson');
-var file_path = 'C:/Users/Ndooba/Desktop/Design II/Data/Wits Data/Wits Data/Stitched/WITS_The_Junction_HT_kWh/WITS_The_Junction_HT_kWh.csv';
+var file_path = 'C:/Users/Ndooba/Desktop/Design II/Data/clean_Amagumbi.csv';
 
 mongo.connect(url,function(err,db){
     if (err) throw err;
@@ -23,7 +23,7 @@ mongo.connect(url,function(err,db){
         var line_number = 0;
         var final_time = '';
         jsonObj.forEach(function(line){
-            day_obj[count] = Number(line.WITS_The_Junction_HT_kWh);
+            day_obj[count] = Number(line.Reading);
             count++;
             
             if (count == 48) {
@@ -36,10 +36,10 @@ mongo.connect(url,function(err,db){
             if (count2 == 7){
                 var schemaObj = {
                     place: "Junction",
-                    building: "whole",
-                    station_type: "main",
+                    building: "Amagumbi",
+                    station_type: "sub",
                     type: "energy",
-                    timestamp_week: line.ValueTimestamp,
+                    timestamp_week: line.Date_time,
                     values: week_obj
                 };
                 count2 = 0;
@@ -51,14 +51,14 @@ mongo.connect(url,function(err,db){
 
                 week_obj = {};
             }
-            final_time = line.ValueTimestamp;
+            final_time = line.Date_time;
         })
 
         week_obj[count2] = day_obj;
         var schemaObj = {
             place: "Junction",
-            building: "whole",
-            station_type: "main",
+            building: "Amagumbi",
+            station_type: "sub",
             type: "energy",
             timestamp_week: final_time,
             values: week_obj
