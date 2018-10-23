@@ -13,7 +13,7 @@ Run "node populateDB.js" and "node populateBISDB.js" form the energy-viz/public/
 Run "node index.js" from energy-viz/
 
 NOTE: ensure that the directories in populateDB.js, populateBISDB.js and index.js are correct for your local machine 
-NOTE: the csv files for population are found in raw/
+NOTE: the csv file can be found in the supporting material of the submission to avoid making public wits data
 
 
 
